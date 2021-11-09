@@ -27,7 +27,9 @@ pipeline {
                        terraform workspace new ${params.Project}
                        terraform workspace list
                        terraform workspace select ${params.Project}
-                       terraform apply -input=false
+                       terraform plan -out myplan                    
+                       terraform apply -input=false myplan
+                       rm -f myplan
                     """    
                 }
                 else {
