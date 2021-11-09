@@ -23,7 +23,7 @@ pipeline {
                        pwd
                        ls -lrt
                        terraform get -update
-                       terraform -chdir=src init -backend-config='conn_str=postgres://tf_user:jandrew28@192.168.2.213/terraform_backend?sslmode=disable'
+                       terraform init -backend-config='conn_str=postgres://tf_user:jandrew28@192.168.2.213/terraform_backend?sslmode=disable'
                        terraform workspace new ${params.Project}
                        terraform workspace list
                        terraform workspace select ${params.Project}
