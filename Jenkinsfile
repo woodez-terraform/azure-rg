@@ -20,8 +20,10 @@ pipeline {
             script {
                 if (params.Action == "Build"){
                     sh """
+                       pwd
+                       ls -lrt
                        terraform get -update
-                       terraform init
+                       terraform -chdir=src init -backend-config='conn_str=postgres://tf_user:jandrew28@192.168.2.213/terraform_backend?sslmode=disable'
                        terraform workspace new ${params.Project}
                        terraform workspace list
                        terraform workspace select ${params.Project}
