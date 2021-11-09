@@ -27,7 +27,7 @@ pipeline {
                        terraform workspace new ${params.Project}
                        terraform workspace list
                        terraform workspace select ${params.Project}
-                       terraform plan -out myplan                    
+                       terraform plan -var=\"project=${params.Project}\" -out myplan                    
                        terraform apply -input=false myplan
                        rm -f myplan
                     """    
