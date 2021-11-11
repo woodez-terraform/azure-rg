@@ -35,7 +35,7 @@ pipeline {
                 else {
                     sh """
                        terraform workspace select ${params.Project}
-                       terraform destroy -auto-approve
+                       terraform destroy -var=\"project=${params.Project}\" -auto-approve
                        terraform workspace select default
                        terraform workspace delete ${params.Project}  
                     """
